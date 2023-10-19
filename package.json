@@ -1,19 +1,20 @@
 {
-  "name": "n8n-nodes-<...>",
+  "name": "n8n-nodes-xstate",
   "version": "0.1.0",
   "description": "",
   "keywords": [
-    "n8n-community-node-package"
+    "n8n-community-node-package",
+    "xstate"
   ],
   "license": "MIT",
   "homepage": "",
   "author": {
-    "name": "",
-    "email": ""
+    "name": "Alessandro Capezzera (Zerouno SRL)",
+    "email": "alessandro.capezzera99@gmail.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/<...>/n8n-nodes-<...>.git"
+    "url": "https://gitlab.jpuzzle.it/developers/n8n-xstate"
   },
   "main": "index.js",
   "scripts": {
@@ -30,12 +31,12 @@
   "n8n": {
     "n8nNodesApiVersion": 1,
     "credentials": [
-      "dist/credentials/ExampleCredentialsApi.credentials.js",
-      "dist/credentials/HttpBinApi.credentials.js"
+      "dist/credentials/DatabaseFSMCredentialsApi.credentials.js"
     ],
     "nodes": [
-      "dist/nodes/ExampleNode/ExampleNode.node.js",
-      "dist/nodes/HttpBin/HttpBin.node.js"
+      "dist/nodes/XStateExecuteAction/XStateExecuteAction.node.js",
+      "dist/nodes/XStateCreateInstance/XStateCreateInstance.node.js",
+      "dist/nodes/XStateRetrieveInstances/XStateRetrieveInstances.node.js"
     ]
   },
   "devDependencies": {
@@ -48,5 +49,12 @@
     "n8n-workflow": "*",
     "prettier": "^2.7.1",
     "typescript": "~4.8.4"
+  },
+  "dependencies": {
+    "knex": "^3.0.1",
+    "mysql": "^2.18.1",
+    "pg": "^8.11.3",
+    "sqlite3": "^5.1.6",
+    "xstate": "^5.0.0-beta.33"
   }
 }

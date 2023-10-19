@@ -25,6 +25,7 @@
 		"credentials/**/*",
 		"nodes/**/*",
 		"nodes/**/*.json",
+		"nodes/common/**/*",
 		"package.json",
 	],
 }
