@@ -1,7 +1,7 @@
 {
   "name": "n8n-nodes-xstate",
   "version": "0.1.0",
-  "description": "",
+  "description": "A custom node package for n8n, providing integration with xstate v5.",
   "keywords": [
     "n8n-community-node-package",
     "xstate"
