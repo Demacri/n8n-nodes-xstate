@@ -16,7 +16,7 @@ export class XStateRetrieveInstances implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'databaseFSMCredentialsApi',
+				name: 'xStateFSMCredentialsApi',
 				required: true,
 			},
 		],

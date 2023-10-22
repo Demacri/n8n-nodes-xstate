@@ -29,7 +29,7 @@ export class XStateExecuteAction implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'databaseFSMCredentialsApi',
+				name: 'xStateFSMCredentialsApi',
 				required: true,
 			},
 		],
@@ -67,7 +67,7 @@ export class XStateExecuteAction implements INodeType {
 		const actionToExecute = this.getNodeParameter('action', 0) as string;
 
 		// 1. Retrieve the FSM definition for the given fsmDefinitionId
-		const fsmDefinitions = await this.getCredentials('databaseFSMCredentialsApi');
+		const fsmDefinitions = await this.getCredentials('xStateFSMCredentialsApi');
 		if (!fsmDefinitions) throw new NodeOperationError(this.getNode(), 'No credentials got returned!');
 		const fsmDefinition = (fsmDefinitions.fsmDefinitions as IDataObject[]).find((definition: any) => definition.id === this.getNodeParameter('fsmDefinitionId', 0) as string);
 		let machine;

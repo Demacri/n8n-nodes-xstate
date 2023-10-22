@@ -18,7 +18,7 @@ export class XStateCreateInstance implements INodeType {
 		outputs: ['main'],
 		credentials: [
 			{
-				name: 'databaseFSMCredentialsApi',
+				name: 'xStateFSMCredentialsApi',
 				required: true,
 			},
 		],
@@ -56,7 +56,7 @@ export class XStateCreateInstance implements INodeType {
 		let initialState = this.getNodeParameter('initialState', 0) as string;
 
 		// Retrieve the FSM definition for the entity
-		const fsmDefinitions = await this.getCredentials('databaseFSMCredentialsApi');
+		const fsmDefinitions = await this.getCredentials('xStateFSMCredentialsApi');
 		if (!fsmDefinitions) throw new NodeOperationError(this.getNode(), 'FSM definitions not found.');
 
 		const fsmDefinition = (fsmDefinitions.fsmDefinitions as IDataObject[]).find((definition: any) => definition.id === fsmDefinitionId);
@@ -81,12 +81,12 @@ export class XStateCreateInstance implements INodeType {
 		// If the FSM instance already exists, throw an error
 		const existingInstance = await db('fsm_instances').where({
 			uuid: uuid,
-			fsmDefinitionId: fsmDefinitionId
+			fsmDefinitionId
 		}).first();
 		if (existingInstance) throw new NodeOperationError(this.getNode(), `FSM instance with uuid ${uuid} already exists.`);
 		// Insert the new FSM instance into the database
 		await db('fsm_instances').insert({
-			fsmDefinitionId: fsmDefinitionId,
+			fsmDefinitionId,
 			uuid: uuid,
 			state: state?.value,
 			persistedState: JSON.stringify(state),
@@ -95,7 +95,7 @@ export class XStateCreateInstance implements INodeType {
 		return [[
 			{
 				json: {
-					uuid: uuid,
+					uuid,
 					initialState: state
 				}
 			}
